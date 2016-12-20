@@ -21,6 +21,12 @@ class ShapeFace:
         self.haarcascadesDir = './haarcascades'
         self.prepareHaarcascades()
         self.imageObjs = self.prepareImages()
+        self.createListForVerticies()
+
+    def createListForVerticies(self):
+        self.listForVerticies = list()
+        for i in range(0, 4):
+            self.listForVerticies.append(list())
 
     def prepareHaarcascades(self):
         cascade_files = self.haarcascadesAppender()
@@ -57,8 +63,8 @@ class ShapeFace:
     def getFaces(self):
         for imageObj in self.imageObjs:
             verticies = self.useHaarcascade(imageObj)
-            # details = getDetailOfVerticies(verticies)
             self.writeVerticies(verticies)
+        self.writeStatistics()
 
     def useHaarcascade(self, imageObj):
         images = imageObj.copyImage()
@@ -74,12 +80,13 @@ class ShapeFace:
         face_cascade = self.face_cascades[num]
         faces = face_cascade.detectMultiScale(gray)
         if len(faces) == 1:
-            return faces[0][0], faces[0][1], faces[0][0] + faces[0][2], faces[0][1] + faces[0][3]
+            x, y, w, h = faces[0]
+            w += x
+            h += y
+            self.listForVerticies[num].append((x, y, w, h))
+            return x, y, w, h
         else:
             return False
-
-    def getDetailOfVerticies(self, verticies):
-        pass
 
     def writeVerticies(self, verticies):
         with open('verticies.log', 'a') as f:
@@ -87,6 +94,40 @@ class ShapeFace:
                 print(data)
                 f.write(str(data) + '\n')
             f.write('\n')
+
+    def displaySummation(self):
+        print('----------------')
+        import time
+        time.sleep(10)
+        for lines in self.listForVerticies:
+            print('-----------------')
+            for line in lines:
+                print(line)
+
+    def writeStatistics(self):
+        with open('verticies.log', 'a') as f:
+            for lines in self.listForVerticies:
+                ave = self.getAverage(lines)
+                print('The Number Of Valid Data: ' + str(len(lines)) + '\n')
+                print('The Average Of Each Vertex: ' + str(ave) + '\n')
+                f.write('The Number Of Valid Data: ' + str(len(lines)) + '\n')
+                f.write('The Average Of Each Vertex: ' + str(ave) + '\n')
+                f.write('--------------------------------------------')
+
+    def getAverage(self, lines):
+        sumX = sumY = sumW = sumH = 0
+        for line in lines:
+            sumX += line[0]
+            sumY += line[1]
+            sumW += line[2]
+            sumH += line[3]
+        aveX = sumX / len(lines)
+        aveY = sumY / len(lines)
+        aveW = sumW / len(lines)
+        aveH = sumH / len(lines)
+        print(aveX, aveY, aveW, aveH)
+
+        return aveX, aveY, aveW, aveH
 
 
 if __name__ == '__main__':
