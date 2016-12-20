@@ -1,0 +1,23 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+applyHaarcascade	shapeFace.py	/^    def applyHaarcascade(self, image, num):$/;"	m	class:ShapeFace
+copyImage	shapeFace.py	/^    def copyImage(self):$/;"	m	class:Image
+cv2	shapeFace.py	/^import cv2$/;"	i
+getDetailOfVerticies	shapeFace.py	/^    def getDetailOfVerticies(self, verticies):$/;"	m	class:ShapeFace
+getFaces	shapeFace.py	/^    def getFaces(self):$/;"	m	class:ShapeFace
+getImgPaths	shapeFace.py	/^    def getImgPaths(self):$/;"	m	class:ShapeFace
+haarcascadesAppender	shapeFace.py	/^    def haarcascadesAppender(self):$/;"	m	class:ShapeFace
+Image	shapeFace.py	/^class Image:$/;"	c
+os	shapeFace.py	/^import os$/;"	i
+prepareHaarcascades	shapeFace.py	/^    def prepareHaarcascades(self):$/;"	m	class:ShapeFace
+prepareImages	shapeFace.py	/^    def prepareImages(self):$/;"	m	class:ShapeFace
+ShapeFace	shapeFace.py	/^class ShapeFace:$/;"	c
+shaper	shapeFace.py	/^    shaper = ShapeFace()$/;"	v
+useHaarcascade	shapeFace.py	/^    def useHaarcascade(self, imageObj):$/;"	m	class:ShapeFace
+writeVerticies	shapeFace.py	/^    def writeVerticies(self, verticies):$/;"	m	class:ShapeFace
+__init__	shapeFace.py	/^    def __init__(self):$/;"	m	class:ShapeFace
+__init__	shapeFace.py	/^    def __init__(self, path):$/;"	m	class:Image

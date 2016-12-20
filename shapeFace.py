@@ -82,7 +82,7 @@ class ShapeFace:
         pass
 
     def writeVerticies(self, verticies):
-        with open('verticies.log', 'w') as f:
+        with open('verticies.log', 'a') as f:
             for data in verticies:
                 print(data)
                 f.write(str(data) + '\n')
