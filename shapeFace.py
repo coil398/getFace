@@ -25,6 +25,15 @@ class ShapeFace:
         self.prepareHaarcascades()
         self.imageObjs = self.prepareImages()
         self.createListForVerticies()
+        self.setDirPath()
+
+    def setDirPath(self):
+        self.dirPath = './shaped'
+        if os.path.isdir(self.dirPath):
+            return
+        else:
+            os.mkdir(self.dirPath)
+            return
 
     def createListForVerticies(self):
         self.listForVerticies = list()
@@ -63,11 +72,26 @@ class ShapeFace:
             paths.append('./talentData/' + f)
         return paths
 
-    def getFaces(self):
+    def saveCutFaces(self):
+        i = 0
         for imageObj in self.imageObjs:
             verticies = self.useHaarcascade(imageObj)
             self.writeVerticies(verticies)
+            for vertex in verticies:
+                if vertex is False:
+                    continue
+                elif len(vertex) == 1:
+                    continue
+                else:
+                    self.saveFace(i, imageObj.image[vertex[1]:vertex[3], vertex[0]:vertex[2]])
+                    break
+            i += 1
         self.writeStatistics()
+
+    def saveFace(self, num, image):
+        path = self.dirPath + '/' + str(num) + '.jpg'
+        print(path)
+        cv2.imwrite(path, image)
 
     def useHaarcascade(self, imageObj):
         images = imageObj.copyImage()
@@ -77,7 +101,6 @@ class ShapeFace:
             verticies.append(self.applyHaarcascade(image, i))
             i += 1
         count_dict = collections.Counter(verticies)
-        print(count_dict[False])
         if count_dict[False] == 4:
             self.writeError(imageObj.id)
             return imageObj.id
@@ -104,7 +127,6 @@ class ShapeFace:
     def writeVerticies(self, verticies):
         with open('verticies.log', 'a') as f:
             for data in verticies:
-                print(data)
                 f.write(str(data) + '\n')
             f.write('\n')
 
@@ -144,4 +166,4 @@ class ShapeFace:
 
 if __name__ == '__main__':
     shaper = ShapeFace()
-    shaper.getFaces()
+    shaper.saveCutFaces()
