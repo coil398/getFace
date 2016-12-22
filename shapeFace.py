@@ -83,7 +83,8 @@ class ShapeFace:
                 elif len(vertex) == 1:
                     continue
                 else:
-                    self.saveFace(i, imageObj.image[vertex[1]:vertex[3], vertex[0]:vertex[2]])
+                    self.saveFace(i, imageObj.image[
+                                  vertex[1] - 30:vertex[3] + 30, vertex[0] - 30:vertex[2] + 30])
                     break
             i += 1
         self.writeStatistics()
@@ -117,10 +118,14 @@ class ShapeFace:
         faces = face_cascade.detectMultiScale(gray)
         if len(faces) == 1:
             x, y, w, h = faces[0]
-            w += x
-            h += y
-            self.listForVerticies[num].append((x, y, w, h))
-            return x, y, w, h
+            print(x, y, w, h)
+            if w * h > 8000:
+                w += x
+                h += y
+                self.listForVerticies[num].append((x, y, w, h))
+                return x, y, w, h
+            else:
+                return False
         else:
             return False
 
