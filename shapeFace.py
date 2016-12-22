@@ -1,10 +1,13 @@
 import cv2
 import os
+import time
+import collections
 
 
 class Image:
 
     def __init__(self, path):
+        self.id = path.split('-')[0].split('/')[2]
         self.image = cv2.imread(path)
 
     def copyImage(self):
@@ -73,7 +76,17 @@ class ShapeFace:
         for image in images:
             verticies.append(self.applyHaarcascade(image, i))
             i += 1
-        return verticies
+        count_dict = collections.Counter(verticies)
+        print(count_dict[False])
+        if count_dict[False] == 4:
+            self.writeError(imageObj.id)
+            return imageObj.id
+        else:
+            return verticies
+
+    def writeError(self, num):
+        with open('error.log', 'a') as f:
+            f.write(str(num) + '\n')
 
     def applyHaarcascade(self, image, num):
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -97,7 +110,6 @@ class ShapeFace:
 
     def displaySummation(self):
         print('----------------')
-        import time
         time.sleep(10)
         for lines in self.listForVerticies:
             print('-----------------')

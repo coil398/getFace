@@ -6,7 +6,10 @@
 !_TAG_PROGRAM_VERSION	5.8	//
 applyHaarcascade	shapeFace.py	/^    def applyHaarcascade(self, image, num):$/;"	m	class:ShapeFace
 copyImage	shapeFace.py	/^    def copyImage(self):$/;"	m	class:Image
+createListForVerticies	shapeFace.py	/^    def createListForVerticies(self):$/;"	m	class:ShapeFace
 cv2	shapeFace.py	/^import cv2$/;"	i
+displaySummation	shapeFace.py	/^    def displaySummation(self):$/;"	m	class:ShapeFace
+getAverage	shapeFace.py	/^    def getAverage(self, lines):$/;"	m	class:ShapeFace
 getDetailOfVerticies	shapeFace.py	/^    def getDetailOfVerticies(self, verticies):$/;"	m	class:ShapeFace
 getFaces	shapeFace.py	/^    def getFaces(self):$/;"	m	class:ShapeFace
 getImgPaths	shapeFace.py	/^    def getImgPaths(self):$/;"	m	class:ShapeFace
@@ -17,7 +20,10 @@ prepareHaarcascades	shapeFace.py	/^    def prepareHaarcascades(self):$/;"	m	clas
 prepareImages	shapeFace.py	/^    def prepareImages(self):$/;"	m	class:ShapeFace
 ShapeFace	shapeFace.py	/^class ShapeFace:$/;"	c
 shaper	shapeFace.py	/^    shaper = ShapeFace()$/;"	v
+shaper	shapeFace.py	/^    shaper = ShapeFace()$/;"	v	class:ShapeFace
+time	shapeFace.py	/^        import time$/;"	i
 useHaarcascade	shapeFace.py	/^    def useHaarcascade(self, imageObj):$/;"	m	class:ShapeFace
+writeStatistics	shapeFace.py	/^    def writeStatistics(self):$/;"	m	class:ShapeFace
 writeVerticies	shapeFace.py	/^    def writeVerticies(self, verticies):$/;"	m	class:ShapeFace
 __init__	shapeFace.py	/^    def __init__(self):$/;"	m	class:ShapeFace
 __init__	shapeFace.py	/^    def __init__(self, path):$/;"	m	class:Image
